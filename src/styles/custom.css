@@ -444,6 +444,202 @@ article.card:hover {
   box-shadow: 0 0 0 2px color-mix(in oklch, var(--sl-color-text-accent), transparent 78%);
 }
 
+/* ── Mirrored source file viewer ─────────────────────────────────────────── */
+.source-viewer-page {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(90deg, oklch(11% 0.02 250 / 0.92), oklch(15% 0.018 250 / 0.96)),
+    radial-gradient(circle at 92% 14%, oklch(56% 0.09 190 / 0.18), transparent 28rem);
+  color: var(--cg-text-lt);
+  font-family: var(--sl-font);
+}
+
+.source-viewer-shell {
+  width: min(82rem, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+}
+
+.source-viewer-topbar,
+.source-viewer-header,
+.source-viewer-document {
+  border: 1px solid oklch(100% 0 0 / 0.13);
+  background: oklch(17% 0.018 250 / 0.82);
+  box-shadow: 0 24px 80px oklch(0% 0 0 / 0.28);
+}
+
+.source-viewer-topbar {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.source-viewer-brand {
+  color: var(--cg-teal);
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.source-viewer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.source-viewer-actions a {
+  border: 1px solid oklch(100% 0 0 / 0.18);
+  border-radius: 6px;
+  padding: 0.4rem 0.65rem;
+  color: var(--cg-text-lt);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.source-viewer-actions a:hover,
+.source-viewer-actions a:focus-visible {
+  border-color: var(--cg-terracotta-lt);
+  color: var(--cg-terracotta-lt);
+}
+
+.source-viewer-header {
+  margin-bottom: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 8px;
+}
+
+.source-viewer-header p {
+  margin: 0 0 0.5rem;
+  color: var(--cg-terracotta-lt);
+  font-family: var(--sl-font-mono);
+  font-size: 0.85rem;
+}
+
+.source-viewer-header h1 {
+  margin: 0;
+  color: var(--cg-text-lt) !important;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.source-viewer-header > code {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid oklch(100% 0 0 / 0.14);
+  border-radius: 6px;
+  background: oklch(10% 0.016 250 / 0.72);
+  color: oklch(88% 0.08 78);
+  padding: 0.35rem 0.55rem;
+  font-size: 0.85rem;
+}
+
+.source-viewer-document {
+  border-radius: 8px;
+  padding: clamp(1rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+.source-viewer-document.is-markdown {
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.source-viewer-document.is-markdown :where(h1, h2, h3, h4) {
+  color: var(--cg-text-lt) !important;
+  scroll-margin-top: 6rem;
+}
+
+.source-viewer-document.is-markdown h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.source-viewer-document.is-markdown h2 {
+  margin-top: 2.4rem;
+  border-top: 1px solid oklch(100% 0 0 / 0.12);
+  padding-top: 1.4rem;
+}
+
+.source-viewer-document.is-markdown a {
+  color: var(--cg-terracotta-lt);
+}
+
+.source-viewer-document.is-markdown blockquote {
+  margin-inline: 0;
+  border-left: 4px solid var(--cg-terracotta-lt);
+  border-radius: 0 8px 8px 0;
+  background: oklch(30% 0.05 44 / 0.32);
+  padding: 0.85rem 1rem;
+}
+
+.source-viewer-document.is-markdown table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.source-viewer-document.is-markdown th,
+.source-viewer-document.is-markdown td {
+  border-bottom: 1px solid oklch(100% 0 0 / 0.13);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.source-viewer-document.is-markdown code {
+  border: 1px solid oklch(100% 0 0 / 0.12);
+  background: oklch(10% 0.016 250 / 0.6);
+  color: oklch(90% 0.075 78);
+  padding: 0.1em 0.35em;
+}
+
+.source-viewer-document pre {
+  overflow-x: auto;
+  border: 1px solid oklch(100% 0 0 / 0.12);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.source-viewer-document.is-code {
+  padding: 0;
+}
+
+.source-viewer-document.is-code pre {
+  min-height: 55vh;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: oklch(10% 0.016 250) !important;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 44rem) {
+  .source-viewer-topbar {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .source-viewer-actions {
+    justify-content: flex-start;
+  }
+}
+
 /* ── Asides / callout cards ───────────────────────────────────────────────── */
 :root[data-theme='light'] .starlight-aside {
   border: 2px solid var(--cg-ink) !important;

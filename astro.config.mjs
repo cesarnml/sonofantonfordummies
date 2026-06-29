@@ -33,10 +33,10 @@ function sourceAssetPath(value) {
   if (!sourceAssetPaths.has(normalizedPath)) return undefined;
 
   return {
-    localHref: `/source/${normalizedPath
+    localHref: `/source-view/${normalizedPath
       .split('/')
       .map((segment) => encodeURIComponent(segment))
-      .join('/')}`,
+      .join('/')}/`,
     githubHref: `${SOURCE_GITHUB_ROOT}/${normalizedPath
       .split('/')
       .map((segment) => encodeURIComponent(segment))

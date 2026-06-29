@@ -1,0 +1,110 @@
+---
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import { codeToHtml } from 'shiki';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { extname, join, posix } from 'node:path';
+import '../../styles/custom.css';
+
+const sourceRoot = join(process.cwd(), 'public/source');
+const githubRoot = 'https://github.com/cesarnml/son-of-anton/blob/main';
+
+export function getStaticPaths() {
+  const staticSourceRoot = join(process.cwd(), 'public/source');
+
+  function collectFiles(dir = staticSourceRoot, prefix = '') {
+    if (!existsSync(dir)) return [];
+
+    return readdirSync(dir).flatMap((entry) => {
+      const absolutePath = join(dir, entry);
+      const sourcePath = prefix ? posix.join(prefix, entry) : entry;
+
+      if (statSync(absolutePath).isDirectory()) return collectFiles(absolutePath, sourcePath);
+      return sourcePath;
+    });
+  }
+
+  return collectFiles().map((sourcePath) => ({
+    params: { path: sourcePath },
+    props: { sourcePath },
+  }));
+}
+
+const { sourcePath } = Astro.props;
+const absolutePath = join(sourceRoot, sourcePath);
+const content = readFileSync(absolutePath, 'utf8');
+const extension = extname(sourcePath);
+const isMarkdown = extension === '.md' || extension === '.mdx';
+const githubHref = `${githubRoot}/${sourcePath.split('/').map(encodeURIComponent).join('/')}`;
+const rawHref = `/source/${sourcePath.split('/').map(encodeURIComponent).join('/')}`;
+const backHref = '/02-repo-map/';
+const pathSegments = sourcePath.split('/');
+const title = pathSegments.at(-1);
+const directory = pathSegments.length > 1 ? pathSegments.slice(0, -1).join('/') : 'repo root';
+
+const languageByExtension = {
+  '.ts': 'ts',
+  '.tsx': 'tsx',
+  '.js': 'js',
+  '.jsx': 'jsx',
+  '.json': 'json',
+  '.jsonl': 'json',
+  '.sh': 'bash',
+  '.md': 'md',
+  '.mdx': 'mdx',
+};
+
+let renderedHtml;
+if (isMarkdown) {
+  const markdown = await createMarkdownProcessor({
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
+  });
+  renderedHtml = (await markdown.render(content, { fileURL: new URL(`file://${absolutePath}`) })).code;
+} else {
+  renderedHtml = await codeToHtml(content, {
+    lang: languageByExtension[extension] ?? 'text',
+    themes: {
+      light: 'github-light',
+      dark: 'github-dark',
+    },
+    defaultColor: false,
+  });
+}
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Son of Anton Source</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body class="source-viewer-page">
+    <main class="source-viewer-shell">
+      <nav class="source-viewer-topbar" aria-label="Source file navigation">
+        <a class="source-viewer-brand" href="/">Son of Anton for Dummies</a>
+        <div class="source-viewer-actions">
+          <a href={backHref}>Repo map</a>
+          <a href={rawHref}>Raw</a>
+          <a href={githubHref}>GitHub main</a>
+        </div>
+      </nav>
+
+      <header class="source-viewer-header">
+        <p>{directory}</p>
+        <h1>{title}</h1>
+        <code>{sourcePath}</code>
+      </header>
+
+      <article class:list={['source-viewer-document', { 'is-markdown': isMarkdown, 'is-code': !isMarkdown }]}>
+        <Fragment set:html={renderedHtml} />
+      </article>
+    </main>
+  </body>
+</html>
