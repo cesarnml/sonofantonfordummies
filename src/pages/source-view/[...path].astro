@@ -7,6 +7,7 @@ import '../../styles/custom.css';
 
 const sourceRoot = join(process.cwd(), 'public/source');
 const githubRoot = 'https://github.com/cesarnml/son-of-anton/blob/main';
+const githubRawRoot = 'https://raw.githubusercontent.com/cesarnml/son-of-anton/main';
 
 export function getStaticPaths() {
   const staticSourceRoot = join(process.cwd(), 'public/source');
@@ -35,7 +36,7 @@ const content = readFileSync(absolutePath, 'utf8');
 const extension = extname(sourcePath);
 const isMarkdown = extension === '.md' || extension === '.mdx';
 const githubHref = `${githubRoot}/${sourcePath.split('/').map(encodeURIComponent).join('/')}`;
-const rawHref = `/source/${sourcePath.split('/').map(encodeURIComponent).join('/')}`;
+const rawHref = `${githubRawRoot}/${sourcePath.split('/').map(encodeURIComponent).join('/')}`;
 const backHref = '/02-repo-map/';
 const pathSegments = sourcePath.split('/');
 const title = pathSegments.at(-1);

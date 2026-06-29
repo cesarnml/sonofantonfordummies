@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/source/:path*",
+      "destination": "/source-view/:path*",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",
