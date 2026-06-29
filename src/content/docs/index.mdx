@@ -1,0 +1,40 @@
+---
+title: Son of Anton for Dummies
+description: Learn the Son-of-Anton mental model, delivery orchestrator, TDD ticket loop, review gates, and first-contribution workflow.
+template: splash
+hero:
+  title: Son of Anton for Dummies
+  tagline: Learn the mental model, repo shape, and delivery ritual behind Son-of-Anton before you make your first contribution.
+  image:
+    file: ../../assets/son-of-anton-workflow-hero.png
+    alt: Workflow illustration showing a developer reviewing Plan, Decompose, and Closeout gates.
+  actions:
+    - text: Start reading
+      link: /01-mental-model/
+      icon: right-arrow
+      variant: primary
+    - text: Jump to commands
+      link: /07-command-cookbook/
+      icon: rocket
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## The one-sentence mental model
+
+> **Son-of-Anton lets AI run between explicit human decision gates.** The human owns product direction, ticket approval, and final acceptance; the orchestrator owns worktrees, state, tests, review artifacts, PRs, and resumption.
+
+<CardGrid>
+  <Card title="Core model" icon="open-book">
+    Start with the three gates, the split between deterministic CLI and agent skills, and why durable artifacts beat chat memory.
+  </Card>
+  <Card title="Delivery workflow" icon="rocket">
+    Trace a phase from plan to decompose to ticket execution, adversarial review, stacked PRs, and closeout.
+  </Card>
+  <Card title="Hands-on entry" icon="laptop">
+    Find where concepts live in the repo and follow the smallest safe path toward a first contribution.
+  </Card>
+  <Card title="Command reference" icon="setting">
+    Keep the common `/soa` and `bun run deliver` commands close while you learn the workflow.
+  </Card>
+</CardGrid>

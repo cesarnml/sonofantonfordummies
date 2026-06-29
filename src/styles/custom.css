@@ -1,0 +1,526 @@
+/*
+ * Son-of-Anton documentation theme for Starlight.
+ * Quiet delivery-tooling palette: paper, graphite, teal, amber, and red.
+ */
+
+/* ── Fonts ────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+:root {
+  --cg-cream:         oklch(98% 0.006 92);
+  --cg-cream-dim:     oklch(95% 0.008 92);
+  --cg-cream-dimmer:  oklch(90% 0.01 92);
+  --cg-terracotta:    oklch(47% 0.115 27);
+  --cg-terracotta-lt: oklch(68% 0.12 33);
+  --cg-terracotta-bg: oklch(92% 0.035 35);
+  --cg-ink:           oklch(27% 0.015 255);
+  --cg-ink-mid:       oklch(48% 0.025 248);
+  --cg-ink-lt:        oklch(80% 0.018 240);
+  --cg-void:          oklch(18% 0.022 255);
+  --cg-text:          oklch(21% 0.018 255);
+  --cg-text-lt:       oklch(96% 0.006 92);
+  --cg-saffron:       oklch(78% 0.13 78);
+  --cg-teal:          oklch(48% 0.085 190);
+
+  --cg-shadow:    0 10px 24px oklch(20% 0.02 255 / 0.14);
+  --cg-shadow-sm: 0 6px 16px oklch(20% 0.02 255 / 0.12);
+
+  --sl-font:      'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ── Starlight color tokens — light ──────────────────────────────────────── */
+:root[data-theme='light'] {
+  --sl-color-bg:             var(--cg-cream);
+  --sl-color-bg-sidebar:     var(--cg-cream-dim);
+  --sl-color-bg-nav:         var(--cg-cream);
+  --sl-color-bg-inline-code: var(--cg-terracotta-bg);
+  --sl-color-text:           var(--cg-text);
+  --sl-color-text-accent:    var(--cg-terracotta);
+  --sl-color-accent:         var(--cg-terracotta);
+  --sl-color-accent-high:    oklch(34.63% 0.1007 44.03);
+  --sl-color-accent-low:     var(--cg-terracotta-bg);
+  --sl-color-white:          var(--cg-cream);
+  --sl-color-black:          var(--cg-text);
+  --sl-color-gray-1:         var(--cg-text);
+  --sl-color-gray-2:         oklch(39.81% 0.0309 42.86);
+  --sl-color-gray-3:         var(--cg-ink-mid);
+  --sl-color-gray-4:         var(--cg-ink-lt);
+  --sl-color-gray-5:         var(--cg-cream-dimmer);
+  --sl-color-gray-6:         var(--cg-cream-dim);
+  --sl-color-gray-7:         var(--cg-cream);
+  --sl-color-hairline-light:  var(--cg-ink-lt);
+  --sl-color-hairline-medium: var(--cg-ink-mid);
+}
+
+/* ── Starlight color tokens — dark ───────────────────────────────────────── */
+:root[data-theme='dark'] {
+  --sl-color-bg:             var(--cg-void);
+  --sl-color-bg-sidebar:     oklch(27% 0.012 80);
+  --sl-color-bg-nav:         var(--cg-void);
+  --sl-color-bg-inline-code: oklch(30% 0.02 44);
+  --sl-color-text:           var(--cg-text-lt);
+  --sl-color-text-accent:    oklch(83.55% 0.0965 43.63);  /* inverse-primary */
+  --sl-color-accent:         var(--cg-terracotta-lt);
+  --sl-color-accent-high:    oklch(83.55% 0.0965 43.63);
+  --sl-color-accent-low:     oklch(32% 0.022 44);
+  --sl-color-white:          var(--cg-text-lt);
+  --sl-color-black:          var(--cg-void);
+  --sl-color-gray-1:         var(--cg-text-lt);
+  --sl-color-gray-2:         oklch(80% 0.03 44);
+  --sl-color-gray-3:         var(--cg-ink-mid);
+  --sl-color-gray-4:         oklch(38% 0.024 44);
+  --sl-color-gray-5:         oklch(30% 0.018 44);
+  --sl-color-gray-6:         oklch(27% 0.012 80);
+  --sl-color-gray-7:         var(--cg-void);
+  --sl-color-hairline-light:  oklch(34% 0.022 44);
+  --sl-color-hairline-medium: var(--cg-ink-mid);
+}
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+:root[data-theme='light'] h1,
+:root[data-theme='light'] h2,
+:root[data-theme='light'] h3,
+:root[data-theme='light'] h4 {
+  color: var(--cg-text) !important;
+}
+
+/* ── Paper grid — light only ─────────────────────────────────────────────── */
+:root[data-theme='light'] body {
+  background-image: radial-gradient(var(--cg-ink-lt) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ── Site header ─────────────────────────────────────────────────────────── */
+:root[data-theme='light'] header.header {
+  background-color: var(--cg-cream);
+  border-bottom: 2px solid var(--cg-ink);
+}
+:root[data-theme='dark'] header.header {
+  border-bottom: 2px solid oklch(34% 0.022 44);
+}
+
+/* Site title */
+.site-title {
+  color: var(--cg-teal) !important;
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* ── Mobile TOC toggle ("On this page") ──────────────────────────────────── */
+/* Closed toggle button */
+:root[data-theme='light'] span.toggle,
+:root[data-theme='light'] [class*='toggle'][class*='sl-flex'] {
+  background-color: var(--cg-ink) !important;
+  color: var(--cg-cream) !important;
+  border: 1.5px solid var(--cg-ink) !important;
+  border-radius: 8px !important;
+}
+
+/* Open dropdown — bg stays dark (Starlight intent); fix non-active link text.
+   Active item ("Overview") already renders cream via --sl-color-white.
+   Non-active items use --sl-color-text (our dark charcoal) → invisible on dark bg. */
+:root[data-theme='light'] details:has(span.toggle) > :not(summary) a,
+:root[data-theme='light'] details:has(span.toggle) li a {
+  color: var(--cg-cream) !important;
+}
+:root[data-theme='light'] details:has(span.toggle) a[aria-current='true'] {
+  color: var(--cg-saffron) !important;
+  font-weight: 700;
+}
+
+/* ── Search bar ───────────────────────────────────────────────────────────── */
+:root[data-theme='light'] [data-open-modal],
+:root[data-theme='light'] site-search > label {
+  background-color: var(--cg-cream-dimmer) !important;
+  border: 1.5px solid var(--cg-ink-lt) !important;
+  color: var(--cg-ink-mid) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+:root[data-theme='light'] .sidebar-content {
+  border-right: 2px solid var(--cg-ink-lt);
+}
+:root[data-theme='light'] nav.sidebar {
+  background-color: var(--cg-cream-dim);
+}
+
+/* Group labels (Home, Core pipeline, Hands-on, Reference) — all viewports */
+:root[data-theme='light'] .group-label,
+:root[data-theme='light'] .group-label span,
+:root[data-theme='light'] .group-label .large,
+:root[data-theme='light'] [class*='group-label'],
+:root[data-theme='light'] [class*='group-label'] span,
+:root[data-theme='light'] summary .group-label,
+:root[data-theme='light'] summary .large,
+:root[data-theme='light'] a[href='/'] {
+  color: oklch(34.63% 0.1007 44.03) !important; /* #622300 */
+  font-weight: 700 !important;
+}
+
+/* Active item — sticker highlight */
+.sidebar-content a[aria-current='page'],
+nav a[aria-current='page'] {
+  background-color: var(--cg-terracotta-bg) !important;
+  color: oklch(34.63% 0.1007 44.03) !important;
+  border-left: 3px solid var(--cg-terracotta) !important;
+  font-weight: 700 !important;
+}
+:root[data-theme='dark'] .sidebar-content a[aria-current='page'],
+:root[data-theme='dark'] nav a[aria-current='page'] {
+  background-color: oklch(32% 0.08 44 / 0.5) !important;
+  color: oklch(83.55% 0.0965 43.63) !important;
+  border-left-color: var(--cg-terracotta-lt) !important;
+}
+
+/* ── Landing hero ────────────────────────────────────────────────────────── */
+:root[data-has-hero] .content-panel {
+  padding-top: 0;
+}
+
+:root[data-has-hero] main > .content-panel > .sl-container {
+  max-width: none;
+  padding-inline: 0;
+}
+
+:root[data-has-hero] .hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(34rem, 72vh, 50rem);
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid oklch(100% 0 0 / 0.12);
+}
+
+:root[data-has-hero] .hero::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  z-index: -3;
+  background:
+    linear-gradient(90deg, oklch(11% 0.02 250 / 0.88), oklch(11% 0.02 250 / 0.54) 45%, oklch(11% 0.02 250 / 0.18)),
+    linear-gradient(180deg, oklch(10% 0.02 250 / 0.15), oklch(10% 0.02 250 / 0.82)),
+    url('/assets/son-of-anton-workflow-hero.png') center / cover no-repeat;
+  filter: blur(8px) saturate(1.08) contrast(1.05);
+  transform: scale(1.025);
+}
+
+:root[data-has-hero] .hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 14% 26%, oklch(71% 0.13 78 / 0.2), transparent 30rem),
+    radial-gradient(circle at 72% 18%, oklch(57% 0.1 190 / 0.24), transparent 32rem),
+    linear-gradient(90deg, oklch(9% 0.02 250 / 0.78), oklch(9% 0.02 250 / 0.22) 62%, oklch(9% 0.02 250 / 0.56));
+}
+
+:root[data-has-hero] .hero > img {
+  position: absolute;
+  inset: clamp(1rem, 2vw, 2rem);
+  left: auto;
+  z-index: -1;
+  width: min(58vw, 56rem);
+  height: calc(100% - clamp(2rem, 4vw, 4rem));
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.86;
+  border: 1px solid oklch(100% 0 0 / 0.24);
+  border-radius: 8px;
+  box-shadow: 0 30px 90px oklch(0% 0 0 / 0.5);
+}
+
+:root[data-has-hero] .hero .stack {
+  width: min(46rem, calc(100vw - 2rem));
+  margin: auto auto auto clamp(1rem, 7vw, 7rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid oklch(100% 0 0 / 0.2);
+  border-radius: 8px;
+  background: linear-gradient(135deg, oklch(14% 0.025 250 / 0.86), oklch(17% 0.025 250 / 0.62));
+  box-shadow: 0 32px 90px oklch(0% 0 0 / 0.42);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+}
+
+:root[data-has-hero] .hero h1 {
+  max-width: 10ch;
+  color: #fff !important;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px oklch(0% 0 0 / 0.35);
+}
+
+:root[data-has-hero] .hero .tagline {
+  max-width: 29em;
+  color: oklch(94% 0.012 92) !important;
+  font-size: clamp(1.15rem, 2.1vw, 1.65rem);
+  line-height: 1.45;
+  text-shadow: 0 1px 18px oklch(0% 0 0 / 0.42);
+}
+
+:root[data-has-hero] .hero .actions {
+  gap: 1rem;
+}
+
+@media (max-width: 58rem) {
+  :root[data-has-hero] .hero {
+    min-height: 42rem;
+  }
+
+  :root[data-has-hero] .hero::before {
+    background:
+      linear-gradient(180deg, oklch(9% 0.02 250 / 0.7), oklch(9% 0.02 250 / 0.72)),
+      url('/assets/son-of-anton-workflow-hero.png') 58% center / cover no-repeat;
+  }
+
+  :root[data-has-hero] .hero > img {
+    inset: auto 1rem 1rem;
+    width: calc(100% - 2rem);
+    height: 14rem;
+    opacity: 0.42;
+  }
+
+  :root[data-has-hero] .hero .stack {
+    margin: 5rem auto auto;
+  }
+}
+
+@media (max-width: 38rem) {
+  :root[data-has-hero] .hero {
+    min-height: 40rem;
+  }
+
+  :root[data-has-hero] .hero .actions {
+    align-items: stretch;
+  }
+
+  :root[data-has-hero] .hero .actions a {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* ── Hero CTA buttons (splash page) ──────────────────────────────────────── */
+/* Primary button */
+a.sl-link-button.primary,
+.sl-link-button[data-variant='primary'],
+[class*='HeroActions'] a:first-child {
+  background-color: oklch(48% 0.09 188) !important;
+  color: #fff !important;
+  border: 1px solid oklch(82% 0.08 188 / 0.5) !important;
+  box-shadow: 0 16px 38px oklch(0% 0 0 / 0.32) !important;
+  border-radius: 8px !important;
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+a.sl-link-button.primary:hover,
+.sl-link-button[data-variant='primary']:hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 0 10px 24px oklch(0% 0 0 / 0.3) !important;
+}
+a.sl-link-button.primary:active,
+.sl-link-button[data-variant='primary']:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: none !important;
+}
+
+/* Secondary button — cream outline */
+a.sl-link-button:not(.primary),
+.sl-link-button[data-variant='minimal'] {
+  background-color: transparent !important;
+  border: 2px solid var(--cg-ink) !important;
+  color: var(--cg-ink) !important;
+  box-shadow: var(--cg-shadow) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+
+:root:not([data-has-hero]) .hero img,
+:root:not([data-has-hero]) [class*='hero'] img {
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 8px;
+  box-shadow: var(--cg-shadow);
+}
+
+.card {
+  border-radius: 8px !important;
+}
+
+pre,
+code {
+  border-radius: 6px;
+}
+
+:root[data-theme='light'] body {
+  background-image:
+    linear-gradient(90deg, oklch(88% 0.012 240 / 0.45) 1px, transparent 1px),
+    linear-gradient(oklch(88% 0.012 240 / 0.45) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+:root[data-theme='dark'] a.sl-link-button:not(.primary) {
+  border-color: oklch(60% 0.04 44) !important;
+  color: var(--cg-text-lt) !important;
+  box-shadow: 4px 4px 0 0 oklch(60% 0.04 44) !important;
+}
+a.sl-link-button:not(.primary):hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: var(--cg-shadow-sm) !important;
+}
+
+/* ── Cards (splash CardGrid) ──────────────────────────────────────────────── */
+article.card {
+  border: 2px solid var(--cg-ink) !important;
+  box-shadow: var(--cg-shadow) !important;
+  border-radius: 8px !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+article.card:hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: var(--cg-shadow-sm) !important;
+}
+
+:root[data-theme='light'] article.card {
+  background-color: #fff !important;
+}
+:root[data-theme='dark'] article.card {
+  background-color: oklch(27% 0.012 80) !important;
+  border-color: oklch(40% 0.028 44) !important;
+  box-shadow: 4px 4px 0 0 oklch(40% 0.028 44) !important;
+}
+
+:root[data-theme='light'] article.card,
+:root[data-theme='light'] article.card p {
+  color: var(--cg-text) !important;
+}
+
+/* ── Blockquote ───────────────────────────────────────────────────────────── */
+.sl-markdown-content blockquote {
+  border-left: 4px solid var(--cg-terracotta) !important;
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+}
+:root[data-theme='light'] .sl-markdown-content blockquote {
+  background: var(--cg-terracotta-bg);
+  color: var(--cg-text);
+}
+:root[data-theme='dark'] .sl-markdown-content blockquote {
+  background: oklch(30% 0.05 44 / 0.4);
+  border-left-color: var(--cg-terracotta-lt) !important;
+}
+
+/* ── Inline code ──────────────────────────────────────────────────────────── */
+:root[data-theme='light'] .sl-markdown-content :not(pre) > code {
+  background-color: var(--cg-terracotta-bg);
+  color: oklch(34.63% 0.1007 44.03);
+  border: 1px solid var(--cg-ink-lt);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+.source-file-link {
+  text-decoration: none;
+}
+
+.source-file-link code {
+  border-color: color-mix(in oklch, var(--sl-color-text-accent), transparent 45%) !important;
+}
+
+.source-file-link:hover code,
+.source-file-link:focus-visible code {
+  border-color: var(--sl-color-text-accent) !important;
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--sl-color-text-accent), transparent 78%);
+}
+
+/* ── Asides / callout cards ───────────────────────────────────────────────── */
+:root[data-theme='light'] .starlight-aside {
+  border: 2px solid var(--cg-ink) !important;
+  box-shadow: var(--cg-shadow-sm) !important;
+  border-radius: 6px;
+}
+
+/* ── Mermaid diagrams ────────────────────────────────────────────────────── */
+div.mermaid {
+  border: 2px solid var(--cg-ink-lt);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+:root[data-theme='light'] div.mermaid {
+  background: var(--cg-cream-dim);
+}
+:root[data-theme='dark'] div.mermaid {
+  background: oklch(27% 0.012 80);
+  border-color: oklch(38% 0.024 44);
+}
+
+/* ── Divider ─────────────────────────────────────────────────────────────── */
+.sl-markdown-content hr {
+  border: none;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6 Q10 0 20 6 T40 6' fill='none' stroke='%234a3b35' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  margin: 2rem 0;
+}
+
+/* ── Prev / Next pagination links ────────────────────────────────────────── */
+:root[data-theme='light'] .pagination-links a {
+  color: var(--cg-text) !important;
+  background-color: var(--cg-cream) !important;
+}
+:root[data-theme='light'] .pagination-links a .link-title {
+  color: var(--cg-terracotta) !important;
+}
+:root[data-theme='light'] .pagination-links a:hover {
+  border-color: var(--cg-terracotta) !important;
+}
+
+/* ── Pagefind search modal ───────────────────────────────────────────────── */
+:root[data-theme='light'] {
+  --pagefind-ui-primary:    var(--cg-terracotta);
+  --pagefind-ui-text:       var(--cg-text);
+  --pagefind-ui-background: var(--cg-cream);
+  --pagefind-ui-border:     var(--cg-ink-lt);
+  --pagefind-ui-tag:        var(--cg-terracotta-bg);
+}
+
+/* ── Mobile theme toggle ─────────────────────────────────────────────────── */
+.mobile-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--sl-color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.mobile-theme-toggle:hover {
+  color: var(--cg-terracotta);
+}
+.mobile-theme-toggle .icon-sun,
+.mobile-theme-toggle .icon-moon {
+  display: none;
+}
+:root[data-theme='dark'] .mobile-theme-toggle .icon-sun  { display: block; }
+:root[data-theme='light'] .mobile-theme-toggle .icon-moon { display: block; }
+@media (min-width: 50rem) {
+  .mobile-theme-toggle { display: none; }
+}
